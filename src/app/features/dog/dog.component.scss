@@ -1,0 +1,16 @@
+.dog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  & > features-dog-filters {
+    width: 100%;
+    position: -webkit-sticky;
+    place-items: center;
+    position: sticky;
+    top: 0px;
+    z-index: 500;
+    background-color: white;
+  }
+}

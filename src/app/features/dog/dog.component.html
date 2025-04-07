@@ -1,0 +1,13 @@
+<section class="dog">
+  <features-dog-filters
+    [dogs]="breed"
+    [subBreeds]="subBreeds"
+    (selectedBreed)="onSelectedBreed($event)"
+    (selectedSubBreed)="onSelectedSubBreed($event)"
+  ></features-dog-filters>
+  <features-dog-preview
+    [dogs]="dogs"
+    [selectedBreed]="selectedBreed"
+    [selectedSubBreed]="selectedSubBreed"
+  ></features-dog-preview>
+</section>

@@ -1,0 +1,19 @@
+.dog-filters {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+  &__autocomplete {
+    display: inherit;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-transform: capitalize;
+  }
+}
+
+// Angular Material Components overrides
+.mat-mdc-option.mdc-list-item {
+  text-transform: capitalize;
+}

@@ -1,0 +1,39 @@
+<article class="dog-filters" [formGroup]="formGroup">
+  <form class="dog-filters__autocomplete">
+    <mat-label>Select a Dog Breed</mat-label>
+    <mat-form-field class="example-full-width">
+      <mat-label>Dog Breed</mat-label>
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Pick one"
+        matInput
+        formControlName="breedControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="_onBreedSelected($event)"
+      >
+        @for (option of dogBreedsValue$ | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <form class="dog-filters__autocomplete">
+    <mat-label>Select a Sub-breed</mat-label>
+    <mat-form-field>
+      <mat-label>Pick one</mat-label>
+      <mat-select
+        formControlName="subBreedControl"
+        (selectionChange)="_onSubBreedSelected($event)"
+      >
+        @for (dog of _subBreeds; track dog) {
+        <mat-option [value]="dog">{{ dog }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</article>
