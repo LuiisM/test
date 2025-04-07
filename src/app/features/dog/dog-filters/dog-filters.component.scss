@@ -13,6 +13,10 @@
     gap: 0.5rem;
     text-transform: capitalize;
   }
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 // Angular Material Components overrides
