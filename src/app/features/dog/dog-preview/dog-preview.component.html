@@ -3,7 +3,7 @@
   <mat-card class="dog-preview__card" appearance="outlined">
     <mat-card-header>
       <mat-card-title>{{ selectedBreed }}</mat-card-title>
-      <mat-card-subtitle>{{ selectedSubBreed }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ selectedSubBreed || `&nbsp;` }}</mat-card-subtitle>
     </mat-card-header>
     <img
       class="dog-preview__img"

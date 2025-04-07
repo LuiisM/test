@@ -3,7 +3,6 @@ import { Component, inject, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { DogsService } from './services/dogs.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Dog } from './dog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

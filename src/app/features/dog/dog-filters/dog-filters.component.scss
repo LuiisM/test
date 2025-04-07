@@ -5,7 +5,8 @@
   width: 100%;
   justify-content: center;
   box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
-  &__autocomplete {
+  background-color: var(--mat-sys-surface);
+  &__autocomplete > mat-form-field {
     display: inherit;
     flex-direction: column;
     gap: 0.5rem;

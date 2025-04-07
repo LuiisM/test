@@ -23,6 +23,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 
 @Component({
   selector: 'features-dog-filters',
+  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
@@ -40,6 +41,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DogFiltersComponent {
+  // TODO CVA - shared comp
   @Input() dogs: { [key: string]: string[] } = {};
   @Input() set subBreeds(value: string[]) {
     if (value.length > 0) {
