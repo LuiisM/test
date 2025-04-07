@@ -8,9 +8,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
+import {
+  BehaviorSubject,
+  map,
+  Observable,
+  startWith,
+  Subscription,
+} from 'rxjs';
 import { DogFiltersComponent } from './dog-filters/dog-filters.component';
 import { DogPreviewComponent } from './dog-preview/dog-preview.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'features-dog',
@@ -25,6 +32,7 @@ import { DogPreviewComponent } from './dog-preview/dog-preview.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
   ],
   templateUrl: './dog.component.html',
@@ -34,8 +42,10 @@ export class DogComponent {
   @Output() breed: { [key: string]: string[] } = {};
   dogs: string[] = [];
   dogService = inject(DogsService);
+  suscriptions = new Subscription();
   selectedBreed = '';
   selectedSubBreed = '';
+  isLoading$ = new BehaviorSubject(true);
   protected subBreeds: string[] = [];
 
   ngOnInit(): void {
@@ -54,21 +64,32 @@ export class DogComponent {
     this.selectedSubBreed = event;
     this._fetchDogs(event);
   }
+  ngOnDestroy(): void {
+    this.suscriptions.unsubscribe();
+  }
   private _fetchAllBreeds(): void {
-    this.dogService.getAllDogs().subscribe((dogs) => {
-      this.breed = dogs.message;
+    this.isLoading$.next(true);
+    this.suscriptions = this.dogService.getAllDogs().subscribe({
+      next: (dogs) => (this.breed = dogs.message),
+      complete: () => this.isLoading$.next(false),
     });
   }
   private _fetchDogs(subBreed: string): void {
-    this.dogService
+    this.isLoading$.next(true);
+    this.suscriptions = this.dogService
       .getDogBySubBreed(this.selectedBreed, subBreed)
-      .subscribe((dogs) => {
-        this.dogs = dogs.message;
+      .subscribe({
+        next: (dogs) => (this.dogs = dogs.message),
+        complete: () => this.isLoading$.next(false),
       });
   }
   private _fetchDogsByBreed(): void {
-    this.dogService.getDogByBreed(this.selectedBreed).subscribe((dogs) => {
-      this.dogs = dogs.message;
-    });
+    this.isLoading$.next(true);
+    this.suscriptions = this.dogService
+      .getDogByBreed(this.selectedBreed)
+      .subscribe({
+        next: (dogs) => (this.dogs = dogs.message),
+        complete: () => this.isLoading$.next(false),
+      });
   }
 }

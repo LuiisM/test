@@ -5,6 +5,12 @@
     (selectedBreed)="onSelectedBreed($event)"
     (selectedSubBreed)="onSelectedSubBreed($event)"
   ></features-dog-filters>
+  @if (isLoading$ | async) {
+  <div class="dog__spinner">
+    <mat-hint>Fetching Dogs</mat-hint>
+    <mat-spinner></mat-spinner>
+  </div>
+  }
   <features-dog-preview
     [dogs]="dogs"
     [selectedBreed]="selectedBreed"
