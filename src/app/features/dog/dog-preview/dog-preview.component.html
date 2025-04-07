@@ -1,7 +1,7 @@
 <article class="dog-preview">
   @for (dog of _dogs; track dog) {
   <mat-card class="dog-preview__card" appearance="outlined">
-    <mat-card-header>
+    <mat-card-header class="dog-preview__header">
       <mat-card-title>{{ selectedBreed }}</mat-card-title>
       <mat-card-subtitle>{{ selectedSubBreed || `&nbsp;` }}</mat-card-subtitle>
     </mat-card-header>

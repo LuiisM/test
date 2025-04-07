@@ -6,15 +6,17 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  width: 100%;
   &__img {
     aspect-ratio: 1/1;
     object-fit: cover;
     width: 100%;
   }
   &__card {
-    width: 19%;
+    width: 18.75rem;
     height: auto;
     border-radius: 0.2rem;
+    border-color: var(--mat-sys-surface-dim);
     &:hover {
       cursor: pointer;
       background-color: #f0edec;
@@ -40,4 +42,6 @@
 .mat-mdc-card-subtitle {
   text-transform: capitalize;
   text-align: left;
+  font-weight: 400;
+  color: var(--mat-sys-on-tertiary-fixed-variant);
 }

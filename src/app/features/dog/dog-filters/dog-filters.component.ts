@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -17,9 +16,9 @@ import {
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { map, Observable, startWith, tap } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'features-dog-filters',
@@ -34,6 +33,8 @@ import { MatOptionSelectionChange } from '@angular/material/core';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    MatIconModule,
+    MatInputModule,
     MatSelectModule,
   ],
   templateUrl: './dog-filters.component.html',
@@ -53,6 +54,7 @@ export class DogFiltersComponent {
   }
   @Output() selectedBreed = new EventEmitter<string>();
   @Output() selectedSubBreed = new EventEmitter<string>();
+  @Output() generateRandomDogs = new EventEmitter<boolean>();
   dogBreedsValue$: Observable<string[]> = new Observable();
   formGroup = new FormGroup({
     breedControl: new FormControl(''),
@@ -72,6 +74,9 @@ export class DogFiltersComponent {
   }
   _onSubBreedSelected(event: MatSelectChange) {
     this.selectedSubBreed.emit(event.value);
+  }
+  _onGenerateRandomDogs() {
+    this.generateRandomDogs.emit(true);
   }
   private _filter(value: string): string[] {
     const values: string[] = [];

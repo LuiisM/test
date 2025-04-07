@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DogsService {
   private apiUrl = 'https://dog.ceo/api';
+  private readonly RANDOM_DOGS_SIZE = 50;
   http: HttpClient = inject(HttpClient);
   // Get all dogs
   getAllDogs(): Observable<any> {
@@ -25,5 +26,11 @@ export class DogsService {
   // Get all dog sub-breeds of a specific breed
   getDogSubBreeds(breed: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/breed/${breed}/list`);
+  }
+  // Get random dogs
+  getRandomDogs(): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/breeds/image/random/${this.RANDOM_DOGS_SIZE}`
+    );
   }
 }

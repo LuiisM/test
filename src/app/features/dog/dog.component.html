@@ -4,6 +4,7 @@
     [subBreeds]="subBreeds"
     (selectedBreed)="onSelectedBreed($event)"
     (selectedSubBreed)="onSelectedSubBreed($event)"
+    (generateRandomDogs)="onGenerateRandomDogs($event)"
   ></features-dog-filters>
   @if (isLoading$ | async) {
   <div class="dog__spinner">
