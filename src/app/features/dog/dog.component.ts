@@ -81,6 +81,7 @@ export class DogComponent implements AfterViewInit {
       if (this.subBreeds.length > 0) {
         this.onSelectedSubBreed(this.selectedSubBreed);
       }
+      // update filters with current selection
       this.dogFiltersComponent.formGroup.controls.breedControl.setValue(
         this.selectedBreed
       );
